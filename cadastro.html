@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="image 27.png" type="image/x-icon">
+    <title>Cadastro - Secretaria de Educação</title>
+</head>
+<body>
+
+    <div class="header">
+        <img src="image 27.png" alt="Logo" class="logo">
+        <span class="title">Secretaria de Educação</span>
+    </div>
+
+    <div class="container">
+        <div class="register-box">
+            <h2>Cadastre-se aqui</h2>
+
+            <div class="input-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Digite seu email">
+            </div>
+
+            <div class="input-group">
+                <label for="senha">Senha</label>
+                <input type="password" id="senha" placeholder="Digite sua senha">
+                <span class="show-password" onclick="togglePassword('senha')">👁️</span>
+            </div>
+
+            <div class="input-group">
+                <label for="confirma-senha">Confirme sua senha</label>
+                <input type="password" id="confirma-senha" placeholder="Confirme sua senha">
+                <span class="show-password" onclick="togglePassword('confirma-senha')">👁️</span>
+            </div>
+
+            <div class="input-group">
+                <label for="telefone">Telefone</label>
+                <input type="tel" id="telefone" placeholder="Digite seu telefone">
+            </div>
+
+            <div class="input-group cpf-cep">
+                <div>
+                    <label for="cpf">CPF</label>
+                    <input type="text" id="cpf" placeholder="CPF">
+                </div>
+                <div>
+                    <label for="cep">CEP</label>
+                    <input type="text" id="cep" placeholder="CEP">
+                </div>
+            </div>
+
+            <button class="register-button">Cadastrar</button>
+        </div>
+    </div>
+
+    <script>
+        function togglePassword(id) {
+            const input = document.getElementById(id);
+            input.type = input.type === "password" ? "text" : "password";
+        }
+    </script>
+
+</body>
+</html>

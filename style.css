@@ -1,0 +1,128 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Corpo */
+body {
+    background-color: #f2f2f2;
+}
+
+/* Cabeçalho */
+.header {
+    background-color: #02294d;
+    padding: 15px 30px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    height: 60px;
+}
+
+.header .logo {
+    width: 40px;
+    height: 40px;
+}
+
+.header .title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Conteúdo central */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 70px);
+}
+
+/* Caixa de login */
+.login-box {
+    background-color: white;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    text-align: center;
+    width: 350px;
+}
+
+/* Título */
+.login-box h2 {
+    margin-bottom: 20px;
+}
+
+/* Grupos de entrada */
+.input-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-bottom: 1px solid #333;
+    background-color: transparent;
+    outline: none;
+}
+
+/* Mostrar senha (olho) */
+.show-password {
+    position: relative;
+    top: -28px;
+    left: 90%;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+/* Checkbox */
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    margin-bottom: 20px;
+    font-size: 13px;
+}
+
+.checkbox-group input {
+    margin-right: 5px;
+}
+
+/* Botão login */
+.login-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #bfbfbf;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.login-button:hover {
+    background-color: #a6a6a6;
+}
+
+/* Link para cadastro */
+.register {
+    margin-top: 10px;
+    font-size: 12px;
+}
+
+.register a {
+    color: #000;
+    text-decoration: underline;
+}

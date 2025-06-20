@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secretaria de Educação</title>
+    <link rel="stylesheet" href="estilo.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-left">
+            <div class="header-logo"></div>
+            <h1>Secretaria de Educação</h1>
+        </div>
+        <div class="header-right">
+            <img src="https://via.placeholder.com/40/0000FF/FFFFFF?text=J" alt="User Avatar" class="user-avatar">
+            </div>
+    </header>
+
+    <nav class="main-nav">
+        <div class="nav-item active" data-tab="gerenciamento">Gerenciamento de turmas</div>
+        <div class="nav-item" data-tab="escolas">Escolas</div>
+        <div class="nav-item" data-tab="ai-assistant">AI Assistant</div>
+    </nav>
+
+    <main class="main-content">
+        <div class="left-column">
+            <div class="institution-list">
+                <div class="institution-item" data-institution="fund7">Centro de Ensino Fundamental 7</div>
+                <div class="institution-item" data-institution="emedio">Centro de Ensino Médio Elefante Branco</div>
+                <div class="institution-item selected" data-institution="gisno">Centro Educacional Gisno</div>
+            </div>
+            <button class="add-institution-btn">Adicionar Nova Instituição</button>
+        </div>
+
+        <div class="right-column">
+            <div class="summary-section card">
+                <p>Número de Alunos: <b id="num-alunos">248</b></p>
+                <p>Número de Turmas: <b id="num-turmas">8</b></p>
+                <p>Média de notas gerais: <b id="media-notas">7,2</b></p>
+                <button class="add-class-btn">Adicionar turma</button>
+            </div>
+
+            <div class="chart-section card">
+                <h2>Desempenho de turmas</h2>
+                <canvas id="performanceChart"></canvas>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>
