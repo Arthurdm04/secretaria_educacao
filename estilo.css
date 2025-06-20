@@ -16,7 +16,8 @@ body {
 .main-header {
     background-color: #0d47a1; /* Azul escuro */
     color: white;
-    padding: 10px 20px;
+    /* ALTERAÇÃO AQUI: Ajustado o padding-left para 10px */
+    padding: 10px 20px 10px 10px; /* Top:10px, Right:20px, Bottom:10px, Left:10px */
     display: flex;
     justify-content: space-between;
     align-items: center;
