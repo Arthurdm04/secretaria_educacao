@@ -1,25 +1,27 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" href="image 27.png" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="shortcut icon" href="{% static 'assets/logo.png' %}" type="image/x-icon">
     <title>Login - Secretaria de Educação</title>
 </head>
 <body>
 
     <div class="header">
-        <img src="image 27.png" alt="Logo" class="logo">
+        <img src="{% static 'assets/logo.png' %}" alt="Logo" class="logo">
         <span class="title">Secretaria de Educação</span>
     </div>
 
     <div class="container">
-        <div class="login-box">
+        <form class="login-box" id="login-form">
             <h2>Entrar</h2>
             <div class="input-group">
-                <label for="login">Login</label>
-                <input type="text" id="login" placeholder="Digite seu login">
+                <label for="email">Email</label>
+                <input type="text" id="email" placeholder="Digite seu email">
             </div>
             <div class="input-group">
                 <label for="senha">Senha</label>
@@ -31,12 +33,13 @@
                 <label for="lembrar">Lembrar-me</label>
             </div>
             <button class="login-button">Entrar</button>
+            <div id="message-area" style="margin-top: 15px; color: red; text-align: center;"></div>
             <div class="register">
                 Não possui login? <a href="cadastro.html" target="_blank">Cadastre-se aqui!</a>
             </div>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="{% static 'js/script.js' %}"></script>
 </body>
 </html>

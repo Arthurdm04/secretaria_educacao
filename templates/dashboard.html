@@ -1,23 +1,24 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Secretaria de Educação</title>
-    <link rel="stylesheet" href="estilo.css">
-    <link rel="shortcut icon" href="image 27.png" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/estilo.css' %}">
+    <link rel="shortcut icon" href="{% static 'assets/logo.png' %}" type="image/x-icon">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <header class="main-header">
         <div class="header-left">
             <div class="header-logo"></div>
-            <img src="image 27.png" alt="">
+            <img src="{% static 'assets/logo.png' %}" alt="">
             <h1>Secretaria de Educação</h1>
         </div>
-        <div class="header-right">
-            <img src="https://via.placeholder.com/40/0000FF/FFFFFF?text=J" alt="User Avatar" class="user-avatar">
-            </div>
+        <div class="user-avatar">
+            <i class="fa-solid fa-user"></i>
+        </div>
     </header>
 
     <nav class="main-nav">
@@ -52,4 +53,7 @@
     </main>
 
 </body>
+<script src="https://kit.fontawesome.com/8274772de4.js" crossorigin="anonymous"></script>
+<script src="{% static 'js/auth/auth.js' %}"></script>
+<script src="{% static 'js/dashboard.js' %}"></script>
 </html>
