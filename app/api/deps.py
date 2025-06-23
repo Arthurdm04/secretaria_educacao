@@ -1,4 +1,4 @@
-# app/api/deps.py
+# api/deps.py
 
 from typing import Generator
 from fastapi import Depends, HTTPException, status
@@ -30,37 +30,31 @@ def get_db() -> Generator:
     finally:
         db.close()
 
-def get_current_user(db: Session = Depends(get_db), token: str = Depends(oauth2_scheme)) -> models.User:
-    """
-    Dependência para obter o usuário atual a partir de um token JWT.
-    Esta é a função base para todas as verificações de permissão.
-    """
+def get_current_user(
+    db: Session = Depends(get_db), token: str = Depends(oauth2_scheme)
+) -> models.User:
+    credentials_exception = HTTPException(
+        status_code=status.HTTP_401_UNAUTHORIZED,
+        detail="Could not validate credentials",
+        headers={"WWW-Authenticate": "Bearer"},
+    )
     try:
-        # Decodifica o token JWT usando a chave secreta e o algoritmo definidos.
+        # Decodifica o token JWT
         payload = jwt.decode(
             token, settings.SECRET_KEY, algorithms=[settings.ALGORITHM]
         )
-        # Valida o conteúdo (payload) do token usando um schema Pydantic.
-        # Isso garante que o token tenha os campos que esperamos (sub e role).
-        token_data = token_schema.TokenPayload(**payload)
-    except (JWTError, ValidationError):
-        # Se o token for inválido (assinatura errada, expirado, etc.),
-        # lança uma exceção de "Não Autorizado".
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Could not validate credentials",
-            headers={"WWW-Authenticate": "Bearer"},
-        )
+        # Pega o email (que é o 'sub'ject do token)
+        username: str = payload.get("sub")
+        if username is None:
+            raise credentials_exception
+        token_data = token_schema.TokenData(username=username)
+    except JWTError:
+        raise credentials_exception
     
-    # Com o token validado, busca o usuário no banco de dados pelo email (subject do token).
-    user = crud_user.get_by_email(db, email=token_data.sub)
-    if not user:
-        # Se o usuário não for encontrado no banco (ex: foi deletado),
-        # também consideramos as credenciais inválidas.
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="User not found",
-        )
+    # Busca o usuário no banco de dados
+    user = crud_user.get_by_email(db, email=token_data.username)
+    if user is None:
+        raise credentials_exception
     return user
 
 def get_current_active_user(
