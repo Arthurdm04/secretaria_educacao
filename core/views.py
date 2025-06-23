@@ -5,3 +5,6 @@ def login_page(request):
 
 def dashboard_page(request): 
     return render(request, 'dashboard.html')
+
+def cadastro_page(request):
+    return render(request, 'cadastro.html')
