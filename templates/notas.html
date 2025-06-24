@@ -1,0 +1,186 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Painel do Professor - Secretaria de Educação</title>
+    <link rel="stylesheet" href="{% static 'css/estilo.css' %}" />
+    <link
+      rel="shortcut icon"
+      href="{% static 'assets/logo.png' %}"
+      type="image/x-icon"
+    />
+  </head>
+  <body>
+    <header class="main-header">
+      <div class="header-left">
+        <img src="{% static 'assets/logo.png' %}" alt="Logo" class="logo" />
+        <h1>Secretaria de Educação</h1>
+      </div>
+      <div class="flex items-center gap-3">
+        <p id="user-info" class="font-bold"></p>
+        <div id="logout-button" class="user-avatar cursor-pointer" title="Sair">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="1em"
+            viewBox="0 0 512 512"
+          >
+            <path
+              d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"
+            />
+          </svg>
+        </div>
+      </div>
+    </header>
+
+    <nav class="main-nav">
+      <a class="nav-item" href="#">Escolas</a>
+      <a class="nav-item" href="/ia">AI Assistant</a>
+      <a class="nav-item active" href="/notas">Notas</a>
+    </nav>
+
+    <div class="tab-container">
+      <button class="tab-link active" data-tab="notas">Lançar Notas</button>
+      <button class="tab-link" data-tab="presenca">Registrar Presença</button>
+      <button class="tab-link" data-tab="relatorios">
+        Consultar Relatórios
+      </button>
+      <button class="tab-link" data-tab="avisos">Enviar Avisos</button>
+    </div>
+
+    <main class="main-content-professor">
+      <div id="notas" class="tab-content active">
+        <h2>Lançamento de Notas</h2>
+        <div class="form-group-inline">
+          <select id="turma-notas">
+            <option value="">Selecione a Turma</option>
+            <option value="8A">8º Ano A</option>
+            <option value="8B">8º Ano B</option>
+          </select>
+          <select id="avaliacao-notas">
+            <option value="">Selecione a Avaliação</option>
+            <option value="p1">Prova 1º Bimestre</option>
+            <option value="p2">Prova 2º Bimestre</option>
+          </select>
+        </div>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Aluno</th>
+              <th>Matrícula</th>
+              <th>Nota</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>João da Silva</td>
+              <td>202400123</td>
+              <td>
+                <input
+                  type="number"
+                  step="0.1"
+                  min="0"
+                  max="10"
+                  class="nota-input"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Maria Oliveira</td>
+              <td>202400124</td>
+              <td>
+                <input
+                  type="number"
+                  step="0.1"
+                  min="0"
+                  max="10"
+                  class="nota-input"
+                />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <button class="btn-primary">Salvar Notas</button>
+      </div>
+
+      <div id="presenca" class="tab-content">
+        <h2>Registro de Presença</h2>
+        <div class="form-group-inline">
+          <select id="turma-presenca">
+            <option value="">Selecione a Turma</option>
+            <option value="8A">8º Ano A</option>
+            <option value="8B">8º Ano B</option>
+          </select>
+          <input type="date" id="data-presenca" />
+        </div>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Aluno</th>
+              <th>Matrícula</th>
+              <th>Presente</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>João da Silva</td>
+              <td>202400123</td>
+              <td><input type="checkbox" checked /></td>
+            </tr>
+            <tr>
+              <td>Maria Oliveira</td>
+              <td>202400124</td>
+              <td><input type="checkbox" checked /></td>
+            </tr>
+          </tbody>
+        </table>
+        <button class="btn-primary">Salvar Presenças</button>
+      </div>
+
+      <div id="relatorios" class="tab-content">
+        <h2>Relatórios de Frequência e Desempenho</h2>
+        <div class="form-group-inline">
+          <select id="turma-relatorio">
+            <option value="">Selecione a Turma</option>
+            <option value="8A">8º Ano A</option>
+            <option value="8B">8º Ano B</option>
+          </select>
+          <select id="tipo-relatorio">
+            <option value="">Selecione o Tipo de Relatório</option>
+            <option value="freq">Relatório de Frequência</option>
+            <option value="desemp">Relatório de Desempenho</option>
+          </select>
+        </div>
+        <button class="btn-primary">Gerar Relatório</button>
+        <div class="relatorio-output card">
+          <p>Selecione os filtros acima para gerar um relatório.</p>
+        </div>
+      </div>
+
+      <div id="avisos" class="tab-content">
+        <h2>Envio de Avisos por Turma</h2>
+        <div class="form-group-inline">
+          <select id="turma-aviso">
+            <option value="">Selecione a Turma</option>
+            <option value="todos">Todas as Turmas</option>
+            <option value="8A">8º Ano A</option>
+            <option value="8B">8º Ano B</option>
+          </select>
+        </div>
+        <textarea
+          id="mensagem-aviso"
+          placeholder="Digite sua mensagem aqui..."
+        ></textarea>
+        <button class="btn-primary">Enviar Aviso</button>
+      </div>
+    </main>
+
+    <script
+      src="https://kit.fontawesome.com/8274772de4.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="{% static 'js/auth/auth.js' %}"></script>
+    <script src="{% static 'js/notas.js' %}"></script>
+  </body>
+</html>

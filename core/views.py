@@ -11,3 +11,6 @@ def cadastro_page(request):
 
 def ia_page(request):
     return render(request, 'ia.html')
+
+def notas_page(request):
+    return render(request, 'notas.html')

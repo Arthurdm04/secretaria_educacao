@@ -257,3 +257,140 @@ body {
     padding: 8px 10px;
   }
 }
+
+.tab-container {
+    background-color: #ffffff;
+    padding: 0 20px;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    gap: 5px;
+}
+
+.tab-link {
+    padding: 15px 25px;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    font-size: 1em;
+    font-weight: bold;
+    color: #555;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.tab-link:hover {
+    color: #0d47a1;
+}
+
+.tab-link.active {
+    color: #0d47a1;
+    border-bottom-color: #fdd835;
+}
+
+.tab-link:hover {
+    color: #0d47a1;
+}
+
+.tab-link.active {
+    color: #0d47a1;
+    border-bottom-color: #fdd835;
+}
+
+.tab-content {
+    display: none;
+    animation: fadeIn 0.5s;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.tab-content h2 {
+    color: #0d47a1;
+    margin-bottom: 25px;
+}
+
+.form-group-inline {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+    align-items: center;
+}
+
+.form-group-inline select,
+.form-group-inline input[type="date"] {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1em;
+    flex-grow: 1;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 25px;
+}
+
+.data-table th, .data-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.data-table thead {
+    background-color: #f7f9fc;
+}
+
+.data-table th {
+    font-weight: bold;
+    color: #333;
+}
+
+.nota-input {
+    width: 70px;
+    padding: 5px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.btn-primary {
+    background-color: #0d47a1;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0b3a82;
+}
+
+textarea#mensagem-aviso {
+    width: 100%;
+    min-height: 150px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    font-size: 1em;
+    line-height: 1.5;
+}
+
+.relatorio-output {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f7f9fc;
+    border: 1px solid #e0e6ed;
+    min-height: 100px;
+}
