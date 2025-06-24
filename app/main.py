@@ -17,6 +17,7 @@ from pdfminer.high_level import extract_text
 # Routers da aplicação escolar
 from app.api.endpoints import login, user, students, classes
 
+# Carregar variáveis de ambiente
 load_dotenv()
 
 # Criação da aplicação
@@ -106,7 +107,7 @@ def add_doc(File: str, vector_store):
     except Exception as e:
         raise e
 
-#add_doc("./bncc_ensino_medio.pdf", vector_store) -> primeira vez, precisa ser descomentada para indexar o documento
+# add_doc("./bncc_ensino_medio.pdf", vector_store)  # -> Descomente se for indexar o documento pela primeira vez
 
 # Endpoint de Query
 @app.post("/query/", tags=["BNCC"])
