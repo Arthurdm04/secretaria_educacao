@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IA Assistente</title>
+    <link rel="stylesheet" href="{% static 'css/ia.css' %}" />
+  </head>
+  <body>
+    <!-- Cabeçalho -->
+    <header></header>
+
+    <!-- Área de Mensagenss -->
+    <main>
+      <div class="chat">
+        <!-- As mensagens aparecem aqui -->
+      </div>
+
+      <!-- Caixa de input -->
+      <div class="input-box">
+        <input type="text" id="messageInput" placeholder="Qual sua dúvida" />
+        <button onclick="sendMessage()">➤</button>
+      </div>
+    </main>
+
+    <script src="ia.js"></script>
+  </body>
+</html>

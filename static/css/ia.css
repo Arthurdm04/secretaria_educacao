@@ -1,0 +1,192 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* Body */
+body {
+  background-color: #ffffff;
+  color: #000;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Cabeçalho */
+header {
+  flex-shrink: 0;
+}
+
+.top-bar {
+  background-color: #002d5f;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 20px;
+  color: #fff;
+}
+
+.top-bar .logo {
+  width: 35px;
+}
+
+.top-bar .perfil {
+  width: 35px;
+  border-radius: 50%;
+}
+
+.top-bar h2 {
+  font-weight: 500;
+}
+
+/* Menu */
+.menu-bar {
+  background-color: #ffc300;
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  padding: 10px 0;
+}
+
+.menu-bar a {
+  color: #000;
+  text-decoration: none;
+  font-weight: 600;
+  position: relative;
+  padding-bottom: 4px;
+}
+
+.menu-bar a:hover,
+.menu-bar a.active {
+  border-bottom: 3px solid #000;
+}
+
+/* Main */
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Chat */
+/* Chat container */
+.chat {
+  width: 100%;
+  max-width: 800px;
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  background-color: #dcdcdc;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column; /* Para empilhar as mensagens verticalmente */
+}
+
+/* Mensagem genérica - AGORA É O WRAPPER QUE CONTÉM A MENSAGEM E O EMOJI */
+.message-wrapper {
+  display: flex; /* Para alinhar a caixa de mensagem e o emoji lado a lado */
+  align-items: center; /* Alinha verticalmente o conteúdo e o emoji no centro */
+  margin: 10px 0; /* Margem superior e inferior para separar as mensagens */
+  /* max-width foi movido para as classes específicas de user/bot */
+}
+
+.message {
+  padding: 10px 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  flex-grow: 1; /* Permite que a caixa de mensagem ocupe o espaço disponível dentro do wrapper */
+  max-width: 100%; /* Garante que a mensagem não ultrapasse o wrapper */
+}
+
+.message-emoji {
+  font-size: 1.5rem; /* Tamanho do emoji */
+  flex-shrink: 0; /* Garante que o emoji não encolha */
+  /* Margens específicas para cada lado (user/bot) */
+}
+
+/* Mensagem do usuário: Direita, Azul */
+.message-wrapper.user-wrapper {
+  align-self: flex-end; /* Alinha o wrapper inteiro para a direita dentro do chat */
+  flex-direction: row; /* Coloca o emoji à direita do texto */
+  margin-left: auto; /* Empurra o wrapper para a direita, ocupando o espaço restante à esquerda */
+  max-width: 80%; /* Limita a largura total do bloco de mensagem do usuário (texto + emoji) */
+  margin-right: 0; /* Garante que não haja margem extra à direita */
+}
+
+.message.user {
+  background-color: #003366;
+  color: white;
+  margin-left: 0; /* Garante que a caixa de texto não tenha margem indesejada */
+}
+
+.user-wrapper .message-emoji {
+  margin-left: 10px; /* Espaçamento entre a mensagem do usuário e o emoji */
+}
+
+/* Mensagem do bot: Esquerda, Branco */
+.message-wrapper.bot-wrapper {
+  align-self: flex-start; /* Alinha o wrapper inteiro para a esquerda dentro do chat */
+  margin-right: auto; /* Empurra o wrapper para a esquerda, ocupando o espaço restante à direita */
+  max-width: 80%; /* Limita a largura total do bloco de mensagem do bot (emoji + texto) */
+  margin-left: 0; /* Garante que não haja margem extra à esquerda */
+}
+
+.message.bot {
+  background-color: #f0f0f0;
+  color: black;
+  margin-right: 0; /* Garante que a caixa de texto não tenha margem indesejada */
+}
+
+.bot-wrapper .message-emoji {
+  margin-right: 10px; /* Espaçamento entre o emoji do bot e a mensagem */
+}
+
+/* Input */
+.input-box {
+  width: 100%;
+  max-width: 800px;
+  background-color: #dcdcdc; /* Mais escuro */
+  border-radius: 12px;
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.input-box input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #333; /* Cor do texto de entrada um pouco mais escura, como solicitado */
+  font-size: 1rem;
+}
+
+.input-box input::placeholder {
+  color: #888;
+}
+
+.input-box button {
+  border: none;
+  background-color: #2f65ec;
+  color: #fff; /* Corr do texto do botão alterada para branco para melhor contraste */
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 1.2rem;
+}
+
+.input-box button:hover {
+  background-color: #2352b9; /* Um tom ligeiramente mais escuro no hover */
+}
