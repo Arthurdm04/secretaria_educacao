@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IA Assistente</title>
+    <link rel="stylesheet" href="{% static 'css/ia.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/estilo.css' %}" />
+  </head>
+  <body>
+    <header class="main-header">
+      <div class="header-left">
+        <div class="header-logo"></div>
+        <img src="{% static 'assets/logo.png' %}" alt="" />
+        <h1>Secretaria de Educação</h1>
+      </div>
+      <div class="user-avatar">
+        <i class="fa-solid fa-user"></i>
+      </div>
+    </header>
+
+    <nav class="main-nav">
+      <a class="nav-item" href="/dashboard" data-tab="escolas">Escolas</a>
+      <a class="nav-item active" href="/ia" data-tab="ai-assistant"
+        >AI Assistant</a
+      >
+    </nav>
+
+    <!-- Área de Mensagens -->
+    <main>
+      <div class="chat">
+        <!-- As mensagens aparecem aqui -->
+      </div>
+
+      <!-- Caixa de input -->
+      <div class="input-box">
+        <input type="text" id="messageInput" placeholder="Qual sua dúvida" />
+        <button onclick="sendMessage()">➤</button>
+      </div>
+    </main>
+
+    <script src="{% static 'js/ia.js' %}"></script>
+  </body>
+</html>

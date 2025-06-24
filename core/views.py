@@ -8,3 +8,6 @@ def dashboard_page(request):
 
 def cadastro_page(request):
     return render(request, 'cadastro.html')
+
+def ia_page(request):
+    return render(request, 'ia.html')
