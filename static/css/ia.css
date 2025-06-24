@@ -179,11 +179,7 @@ main {
 .input-box button {
   border: none;
   background-color: #2f65ec;
-<<<<<<< HEAD
   color: #fff; /* Corr do texto do botão alterada para branco para melhor contraste */
-=======
-  color: #fff; /* Cor do texto do botão alterada para branco para melhor contraste */
->>>>>>> e851da5cd75eba6275e156611a74ad709fc78cd4
   padding: 8px 12px;
   border-radius: 8px;
   cursor: pointer;
