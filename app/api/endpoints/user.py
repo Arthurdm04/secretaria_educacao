@@ -16,19 +16,30 @@ def create_user(
     *,
     db: Session = Depends(deps.get_db),
     user_in: user.UserCreate,
-    # Apenas Admins podem criar novos usuários
     current_user: models.User = Depends(deps.get_current_admin_user)
+    # Apenas Admins podem criar novos usuários
 ):
     """
     Cria um novo usuário no sistema (Professor, Coordenador, Admin).
     Acesso: Admin
     """
-    # ... (lógica para chamar o crud_user.create)
+    # 1. Verifica se já existe um usuário com o mesmo e-mail
+    existing_user = crud_user.get_by_email(db, email=user_in.email)
+    if existing_user:
+        raise HTTPException(
+            status_code=400,
+            detail="Já existe um usuário com este e-mail no sistema.",
+        )
+    
+    # 2. Chama a função do CRUD para criar o usuário
+    created_user = crud_user.create(db=db, user_in=user_in)
+    
+    # 3. Retorna o usuário recém-criado
     return created_user
 
 @router.get("/me", response_model=user.User)
 def read_user_me(
-    current_user: models.User = Depends(deps.get_current_active_user)
+    current_user: models.User = Depends(deps.get_current_user)
 ):
     """
     Retorna os dados do usuário logado.

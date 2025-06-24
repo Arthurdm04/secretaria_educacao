@@ -8,9 +8,9 @@ from sqlalchemy.orm import relationship
 from .base import Base
 
 class UserRole(str, enum.Enum):
-    ADMIN = "admin"
-    COORDINATOR = "coordinator"
-    TEACHER = "teacher"
+    ADMIN = "ADMIN"
+    PROFESSOR = "PROFESSOR"
+    COORDENADOR = "COORDENADOR"
 
 class User(Base):
     __tablename__ = "users"
