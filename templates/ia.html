@@ -6,12 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>IA Assistente</title>
     <link rel="stylesheet" href="{% static 'css/ia.css' %}" />
+<<<<<<< HEAD
   </head>
   <body>
     <!-- Cabeçalho -->
     <header></header>
 
     <!-- Área de Mensagenss -->
+=======
+    <link rel="stylesheet" href="{% static 'css/estilo.css' %}" />
+  </head>
+  <body>
+    <header class="main-header">
+      <div class="header-left">
+        <div class="header-logo"></div>
+        <img src="{% static 'assets/logo.png' %}" alt="" />
+        <h1>Secretaria de Educação</h1>
+      </div>
+      <div class="user-avatar">
+        <i class="fa-solid fa-user"></i>
+      </div>
+    </header>
+
+    <nav class="main-nav">
+      <a class="nav-item" href="/dashboard" data-tab="escolas">Escolas</a>
+      <a class="nav-item active" href="/ia" data-tab="ai-assistant"
+        >AI Assistant</a
+      >
+    </nav>
+
+    <!-- Área de Mensagens -->
+>>>>>>> e851da5cd75eba6275e156611a74ad709fc78cd4
     <main>
       <div class="chat">
         <!-- As mensagens aparecem aqui -->
@@ -24,6 +49,10 @@
       </div>
     </main>
 
+<<<<<<< HEAD
     <script src="ia.js"></script>
+=======
+    <script src="{% static 'js/ia.js' %}"></script>
+>>>>>>> e851da5cd75eba6275e156611a74ad709fc78cd4
   </body>
 </html>

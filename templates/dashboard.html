@@ -1,59 +1,200 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Secretaria de Educação</title>
-    <link rel="stylesheet" href="{% static 'css/estilo.css' %}">
-    <link rel="shortcut icon" href="{% static 'assets/logo.png' %}" type="image/x-icon">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
-<body>
+    <link rel="stylesheet" href="{% static 'css/estilo.css' %}" />
+    <link
+      rel="shortcut icon"
+      href="{% static 'assets/logo.png' %}"
+      type="image/x-icon"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body class="bg-gray-100">
     <header class="main-header">
-        <div class="header-left">
-            <div class="header-logo"></div>
-            <img src="{% static 'assets/logo.png' %}" alt="">
-            <h1>Secretaria de Educação</h1>
+      <div class="header-left">
+        <img src="{% static 'assets/logo.png' %}" alt="Logo" class="logo" />
+        <h1>Secretaria de Educação</h1>
+      </div>
+      <div class="flex items-center gap-3">
+        <p id="user-info" class="font-bold"></p>
+        <div id="logout-button" class="user-avatar cursor-pointer" title="Sair">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="1em"
+            viewBox="0 0 512 512"
+          >
+            <path
+              d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"
+            />
+          </svg>
         </div>
-        <div class="user-avatar">
-            <i class="fa-solid fa-user"></i>
-        </div>
+      </div>
     </header>
 
     <nav class="main-nav">
-        <div class="nav-item active" data-tab="gerenciamento">Gerenciamento de turmas</div>
-        <div class="nav-item" data-tab="escolas">Escolas</div>
-        <div class="nav-item" data-tab="ai-assistant">AI Assistant</div>
+      <a class="nav-item active" href="#">Escolas</a>
+      <a class="nav-item" href="#">AI Assistant</a>
     </nav>
 
     <main class="main-content">
-        <div class="left-column">
-            <div class="institution-list">
-                <div class="institution-item" data-institution="fund7">Centro de Ensino Fundamental 7</div>
-                <div class="institution-item" data-institution="emedio">Centro de Ensino Médio Elefante Branco</div>
-                <div class="institution-item selected" data-institution="gisno">Centro Educacional Gisno</div>
-            </div>
-            <button class="add-institution-btn">Adicionar Nova Instituição</button>
+      <div class="left-column">
+        <div id="institution-list-container" class="institution-list">
+          <p>Carregando instituições...</p>
         </div>
+        <button id="add-school-btn" class="add-institution-btn">
+          Adicionar Nova Instituição
+        </button>
+      </div>
 
-        <div class="right-column">
-            <div class="summary-section card">
-                <p>Número de Alunos: <b id="num-alunos">248</b></p>
-                <p>Número de Turmas: <b id="num-turmas">8</b></p>
-                <p>Média de notas gerais: <b id="media-notas">7,2</b></p>
-                <button class="add-class-btn">Adicionar turma</button>
-            </div>
-
-            <div class="chart-section card">
-                <h2>Desempenho de turmas</h2>
-                <canvas id="performanceChart"></canvas>
-            </div>
+      <div class="right-column">
+        <div class="summary-section card">
+          <p>Número de Alunos: <b id="num-alunos">...</b></p>
+          <p>Número de Turmas: <b id="num-turmas">...</b></p>
+          <p>Média de notas gerais: <b id="media-notas">...</b></p>
+          <button id="add-class-btn" class="add-class-btn">
+            Adicionar turma
+          </button>
         </div>
+        <div class="chart-section card">
+          <h2>Turmas da Escola Selecionada</h2>
+          <div id="class-list-container" class="class-list mt-4 mb-4">
+            <p>Selecione uma escola para ver as turmas.</p>
+          </div>
+        </div>
+      </div>
     </main>
 
-</body>
-<script src="https://kit.fontawesome.com/8274772de4.js" crossorigin="anonymous"></script>
-<script src="{% static 'js/auth/auth.js' %}"></script>
-<script src="{% static 'js/dashboard.js' %}"></script>
+    <div
+      id="school-modal-overlay"
+      class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden"
+    >
+      <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-md relative">
+        <button
+          id="close-school-modal"
+          class="absolute top-3 right-3 text-gray-500 hover:text-gray-800 text-2xl"
+        >
+          &times;
+        </button>
+        <h2 class="text-2xl font-bold mb-4 text-gray-700">
+          Cadastrar Nova Instituição
+        </h2>
+        <form id="form-escola" class="space-y-4">
+          <div>
+            <label
+              for="nome-escola"
+              class="block text-sm font-medium text-gray-600"
+              >Nome da Instituição</label
+            >
+            <input
+              type="text"
+              id="nome-escola"
+              placeholder="Ex: Centro Educacional Gisno"
+              class="mt-1 w-full border-gray-300 rounded-md shadow-sm p-2"
+              required
+            />
+          </div>
+          <div>
+            <label
+              for="endereco-escola"
+              class="block text-sm font-medium text-gray-600"
+              >Endereço</label
+            >
+            <input
+              type="text"
+              id="endereco-escola"
+              placeholder="Ex: Asa Norte, Brasília - DF"
+              class="mt-1 w-full border-gray-300 rounded-md shadow-sm p-2"
+            />
+          </div>
+          <p id="escola-message-area" class="text-red-500 text-sm"></p>
+          <div class="flex justify-end">
+            <button
+              type="submit"
+              class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition"
+            >
+              Salvar Instituição
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div
+      id="class-modal-overlay"
+      class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden"
+    >
+      <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-md relative">
+        <button
+          id="close-class-modal"
+          class="absolute top-3 right-3 text-gray-500 hover:text-gray-800 text-2xl"
+        >
+          &times;
+        </button>
+        <h2 class="text-2xl font-bold mb-4 text-gray-700">
+          Cadastrar Nova Turma
+        </h2>
+        <form id="form-turma" class="space-y-4">
+          <div>
+            <label
+              for="school-select"
+              class="block text-sm font-medium text-gray-600"
+              >Escola</label
+            >
+            <select
+              id="school-select"
+              class="mt-1 w-full border-gray-300 rounded-md shadow-sm p-2"
+              required
+            >
+              <option value="">Selecione uma escola...</option>
+            </select>
+          </div>
+          <div>
+            <label
+              for="nome-turma"
+              class="block text-sm font-medium text-gray-600"
+              >Nome da Turma</label
+            >
+            <input
+              type="text"
+              id="nome-turma"
+              placeholder="Ex: 3º Ano A"
+              class="mt-1 w-full border-gray-300 rounded-md shadow-sm p-2"
+              required
+            />
+          </div>
+          <div>
+            <label
+              for="ano-letivo"
+              class="block text-sm font-medium text-gray-600"
+              >Ano Letivo</label
+            >
+            <input
+              type="number"
+              id="ano-letivo"
+              placeholder="Ex: 2025"
+              class="mt-1 w-full border-gray-300 rounded-md shadow-sm p-2"
+              required
+            />
+          </div>
+          <p id="turma-message-area" class="text-red-500 text-sm"></p>
+          <div class="flex justify-end">
+            <button
+              type="submit"
+              class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition"
+            >
+              Salvar Turma
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="{% static 'js/auth.js' %}"></script>
+    <script src="{% static 'js/dashboard.js' %}"></script>
+  </body>
 </html>
